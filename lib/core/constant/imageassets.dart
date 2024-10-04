@@ -23,6 +23,10 @@ class AppImageassets{
    static const String notifications="$rootImages/notifcation.jpg";
    static const String product="$rootImages/product.jpg";
 
+   static const String report="$rootImages/report.jpg";
+   static const String order="$rootImages/order.jpg";
+   static const String categorie="$rootImages/categorie.jpg";
+
 
 
 }

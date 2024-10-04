@@ -6,6 +6,7 @@ import 'package:admin_ecommerce/view/screen/auth/forgetpassword/resetpassword.da
 import 'package:admin_ecommerce/view/screen/auth/forgetpassword/success_resetpassword.dart';
 import 'package:admin_ecommerce/view/screen/auth/forgetpassword/verifycode.dart';
 import 'package:admin_ecommerce/view/screen/auth/login.dart';
+import 'package:admin_ecommerce/view/screen/categories/view.dart';
 import 'package:admin_ecommerce/view/screen/home.dart';
 import 'package:admin_ecommerce/view/screen/orderscreen.dart';
 import 'package:admin_ecommerce/view/screen/order/orderdetails.dart';
@@ -24,6 +25,7 @@ List<GetPage<dynamic>>? getPages = [
   GetPage(name: AppRoutes.home, page: () => Home()),
   GetPage(name: AppRoutes.verifycode, page: () => Verifycode()),
   GetPage(name: AppRoutes.ordersdetails, page: () => Orderdetails()),
+  GetPage(name: AppRoutes.categorieadd, page: () => CategoriesView()),
   
 
 ];

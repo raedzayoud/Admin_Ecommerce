@@ -29,7 +29,7 @@ class Home extends StatelessWidget {
               Cardhome(title: "Users",url: AppImageassets.man,onTap: (){},),
               Cardhome(title: "Items",url: AppImageassets.product,onTap: (){},),
               Cardhome(title: "Categories",url: AppImageassets.categorie,onTap: (){
-                Get.toNamed(AppRoutes.categorieadd);
+                Get.toNamed(AppRoutes.categorieview);
               },),
               Cardhome(title: "Report",url: AppImageassets.report,onTap: (){},),
               Cardhome(title: "Orders",url: AppImageassets.order,onTap: (){},),

@@ -23,5 +23,6 @@ class AppRoutes{
   
   //categories
 
+  static const String categorieview ="/categorieview";
   static const String categorieadd ="/categorieadd";
 }

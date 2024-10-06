@@ -1,4 +1,5 @@
 import 'package:admin_ecommerce/core/class/statusrequest.dart';
+import 'package:admin_ecommerce/core/constant/routes.dart';
 import 'package:admin_ecommerce/core/function/handlingdata.dart';
 import 'package:admin_ecommerce/core/services/services.dart';
 import 'package:admin_ecommerce/data/datasource/remote/categories_data.dart';
@@ -9,14 +10,14 @@ import 'package:get/get.dart';
 class CategoriesViewController extends GetxController {
   StatusRequest statusRequest = StatusRequest.none;
   MyServices myServices = Get.find();
-  CategoriesData approveData = CategoriesData(Get.find());
+  CategoriesData categoriesData = CategoriesData(Get.find());
   List<CategoriesModel> datacat = [];
 
   getDataCategories() async {
     datacat.clear();
     statusRequest = StatusRequest.loading;
     update();
-    var response = await approveData.getDataCategories();
+    var response = await categoriesData.getDataCategories();
     if (response == null) {
       statusRequest = StatusRequest.failed;
     }
@@ -37,4 +38,19 @@ class CategoriesViewController extends GetxController {
     getDataCategories();
     super.onInit();
   }
+
+  GoBackHome() {
+    Get.offAllNamed(AppRoutes.home);
+    return Future.value(true);
+  }
+
+  deleteCategories(String id, String name) async {
+    var response =
+        await categoriesData.deleteCategories({"id": id, "name": name});
+
+    datacat.removeWhere((elmemnt) => elmemnt.categoriesId == id);
+
+    update();
+  }
+
 }

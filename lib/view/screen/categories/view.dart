@@ -19,48 +19,70 @@ class CategoriesView extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         backgroundColor: AppColor.white,
         onPressed: () {
-          Get.offAllNamed(AppRoutes.categorieadd);
+          Get.toNamed(AppRoutes.categorieadd);
         },
         child: Icon(Icons.add),
       ),
       body: GetBuilder<CategoriesViewController>(
         builder: (controller) => HandlingdataRequest(
           statusRequest: controller.statusRequest,
-          widget: Container(
-            child: ListView.builder(
-              itemCount: controller.datacat.length,
-              itemBuilder: (context, index) {
-                return Card(
-                  color: AppColor.white,
-                  child: Row(
-                    children: [
-                      Expanded(
-                          child: Image.network(
-                        "${AppLinkApi.imagesCategories}/${controller.datacat[index].categoriesImage}",
-                        height: 90,
-                      )),
-                      Expanded(
-                        child: ListTile(
-                          trailing: IconButton(
-                            icon: Icon(Icons.edit),
-                            onPressed: () {},
-                          ),
-                          title: Text(
-                            "${controller.datacat[index].categoriesName}",
-                            style: TextStyle(
-                              fontSize: 17,
-                              fontWeight: FontWeight.w500,
+          widget: WillPopScope(
+            onWillPop: () {
+              return controller.GoBackHome();
+            },
+            child: Container(
+              child: ListView.builder(
+                itemCount: controller.datacat.length,
+                itemBuilder: (context, index) {
+                  return Card(
+                    color: AppColor.white,
+                    child: Row(
+                      children: [
+                        Expanded(
+                            child: Image.network(
+                          "${AppLinkApi.imagesCategories}/${controller.datacat[index].categoriesImage}",
+                          height: 90,
+                        )),
+                        Expanded(
+                          child: ListTile(
+                            trailing: IconButton(
+                              icon: Icon(Icons.delete_forever_outlined),
+                              onPressed: () {
+                                Get.defaultDialog(
+                                    title: "Warning",
+                                    titleStyle: TextStyle(color: AppColor.red),
+                                    content:
+                                        Text("Are you sure to delete it !"),
+                                    onCancel: () {},
+                                    onConfirm: () {
+                                      controller.deleteCategories(
+                                          controller.datacat[index].categoriesId
+                                              .toString(),
+                                          controller
+                                              .datacat[index].categoriesImage
+                                              .toString());
+                                      Get.back();
+                                      controller.getDataCategories();
+                                    });
+                              },
                             ),
+                            title: Text(
+                              "${controller.datacat[index].categoriesName}",
+                              style: TextStyle(
+                                fontSize: 17,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                            subtitle: Text(
+                                "${controller.datacat[index].categoriesDatatime}",
+                                style: TextStyle(fontSize: 14)),
                           ),
-                          subtitle: Text(
-                              "${controller.datacat[index].categoriesDatatime}",
-                              style: TextStyle(fontSize: 14)),
                         ),
-                      ),
-                    ],
-                  ),
-                );
-              },
+                      ],
+                    ),
+                  );
+                },
+              ),
             ),
           ),
         ),

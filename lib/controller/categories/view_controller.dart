@@ -12,7 +12,6 @@ class CategoriesViewController extends GetxController {
   MyServices myServices = Get.find();
   CategoriesData categoriesData = CategoriesData(Get.find());
   List<CategoriesModel> datacat = [];
-
   getDataCategories() async {
     datacat.clear();
     statusRequest = StatusRequest.loading;
@@ -51,6 +50,10 @@ class CategoriesViewController extends GetxController {
     datacat.removeWhere((elmemnt) => elmemnt.categoriesId == id);
 
     update();
+  }
+
+  GoToEdit(){
+   
   }
 
 }

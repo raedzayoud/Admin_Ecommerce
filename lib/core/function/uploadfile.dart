@@ -21,15 +21,15 @@ imageUploadCamera() async {
 }
 
 fileUploadGallery([issvg = false]) async {
-  FilePickerResult? filePickerResult = await FilePicker.platform.pickFiles(
-      //any type
-      type: FileType.custom,
-      allowedExtensions:
-          issvg ? ["jpg", "JPG"]:["png", "jpg", "gif", "JPG", "PNG"]);
+  final ImagePicker _picker = ImagePicker();
+  XFile? pickedFile = await _picker.pickImage(
+    source: ImageSource.gallery,
+    // You can filter based on the extension here, but by default, ImagePicker handles image types.
+  );
 
-   if (filePickerResult != null) {
-    File file = File(filePickerResult.files.single.path!);
-    
+  if (pickedFile != null) {
+    File file = File(pickedFile.path);
+
     // Check MIME type to confirm it's a valid JPG image
     final mimeType = lookupMimeType(file.path);
     print("==================${mimeType}");
@@ -37,11 +37,16 @@ fileUploadGallery([issvg = false]) async {
       return file;
     } else {
       Get.defaultDialog(
-      titleStyle: TextStyle(color: AppColor.red,fontWeight: FontWeight.bold),
-      title: "Warning",content: Text('The selected file is not a valid JPG image. Please Choose another one !'));
+        titleStyle: TextStyle(
+            color: AppColor.red, fontWeight: FontWeight.bold),
+        title: "Warning",
+        content: Text(
+            'The selected file is not a valid JPG image. Please choose another one!'));
       return null; // or you can handle this case differently
     }
   } else {
     return null; // User canceled the picker
   }
 }
+
+

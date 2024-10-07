@@ -26,6 +26,7 @@ class AppImageassets{
    static const String report="$rootImages/report.jpg";
    static const String order="$rootImages/order.jpg";
    static const String categorie="$rootImages/categorie.jpg";
+   static const String users="$rootImages/users.png";
 
 
 

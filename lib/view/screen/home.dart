@@ -19,23 +19,50 @@ class Home extends StatelessWidget {
         color: AppColor.white,
         child: ListView(
           children: [
-            SizedBox(height: 20,),
+            SizedBox(
+              height: 20,
+            ),
             GridView(
-            gridDelegate:SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3,mainAxisExtent: 140) ,
-            shrinkWrap: true,
-           children: [
-          
-              Cardhome(title: "Notifications",url: AppImageassets.notifications,onTap: (){},),
-              Cardhome(title: "Users",url: AppImageassets.man,onTap: (){},),
-              Cardhome(title: "Items",url: AppImageassets.product,onTap: (){},),
-              Cardhome(title: "Categories",url: AppImageassets.categorie,onTap: (){
-                Get.toNamed(AppRoutes.categorieview);
-              },),
-              Cardhome(title: "Report",url: AppImageassets.report,onTap: (){},),
-              Cardhome(title: "Orders",url: AppImageassets.order,onTap: (){},),
-             
-           
-            ],)
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 3, mainAxisExtent: 140),
+              shrinkWrap: true,
+              children: [
+                Cardhome(
+                  title: "Notifications",
+                  url: AppImageassets.notifications,
+                  onTap: () {},
+                ),
+                Cardhome(
+                  title: "Users",
+                  url: AppImageassets.users,
+                  onTap: () {},
+                ),
+                Cardhome(
+                  title: "Items",
+                  url: AppImageassets.product,
+                  onTap: () {
+                    Get.toNamed(AppRoutes.itemsview);
+                  },
+                ),
+                Cardhome(
+                  title: "Categories",
+                  url: AppImageassets.categorie,
+                  onTap: () {
+                    Get.toNamed(AppRoutes.categorieview);
+                  },
+                ),
+                Cardhome(
+                  title: "Report",
+                  url: AppImageassets.report,
+                  onTap: () {},
+                ),
+                Cardhome(
+                  title: "Orders",
+                  url: AppImageassets.order,
+                  onTap: () {},
+                ),
+              ],
+            )
           ],
         ),
       ),

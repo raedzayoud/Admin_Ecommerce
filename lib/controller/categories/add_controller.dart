@@ -23,42 +23,76 @@ class CategoriesAddController extends GetxController {
     file = await fileUploadGallery(true);
     update();
   }
+  
+  
   addDataCategories() async {
-    //  datacat.clear();
-    if (formState.currentState!.validate()) {
-      if (file == null) {
-        return Get.defaultDialog(title: "Warning",content: Text("Please choose image"));
-      }
-      statusRequest = StatusRequest.loading;
+  // Validate form state
+  if (formState.currentState!.validate()) {
+    // Check if an image has been selected
+    if (file == null) {
+      return Get.defaultDialog(
+        title: "Warning",
+        content: Text("Please choose an image"),
+      );
+    }
+
+    // Show loading state
+    statusRequest = StatusRequest.loading;
+    update();
+
+    // Prepare data for the request
+    Map<String, String> data = {
+      "name": name.text,
+    };
+
+    // Make the request to add category with the uploaded image
+    var response = await approveData.addCategories(data, file!);
+
+    // Check if response is null
+    if (response == null) {
+      statusRequest = StatusRequest.failed;
       update();
-      Map<String, String> data = {"name": name.text};
-      var response = await approveData.addCategories(data, file!);
-      if (response == null) {
+      return;
+    }
+
+    // Handle response status
+    statusRequest = HandleData(response);
+
+    // If the request was successful
+    if (StatusRequest.success == statusRequest) {
+      if (response['status'] == 'success') {
+        // Show a success message using Get.snackbar
+        Get.snackbar(
+          "Information", 
+          "The Categorie was added successfully",
+          snackPosition: SnackPosition.TOP,
+          backgroundColor: AppColor.black,
+          colorText: Colors.white,
+          icon: Icon(Icons.check_circle, color: Colors.white),
+          duration: Duration(seconds: 3),
+          margin: EdgeInsets.all(10),
+        );
+
+        // Refresh the categories list by calling the getDataCategories method
+        CategoriesViewController categoriesViewController = Get.find();
+        categoriesViewController.getDataCategories();
+        Get.offAllNamed(AppRoutes.home);
+        // Navigate back to the previous screen
+       // Get.back();
+      } else {
+        // If adding the category failed
         statusRequest = StatusRequest.failed;
       }
-      statusRequest = HandleData(response);
-      if (StatusRequest.success == statusRequest) {
-        if (response['status'] == 'success') {
-            Get.snackbar(
-          "Information", // Title
-          "The Categorie was added successfully", // Message
-          snackPosition: SnackPosition.BOTTOM, // Position of the snackbar
-          backgroundColor: AppColor.black, // Background color
-          colorText: Colors.white, // Text color
-          icon: Icon(Icons.check_circle, color: Colors.white), // Optional icon
-          duration: Duration(seconds: 3), // Display duration
-          margin: EdgeInsets.all(10),); // Margin around the snackbar
-          // CategoriesViewController categoriesViewController=Get.find();
-          // categoriesViewController.getDataCategories();
-          Get.offAllNamed(AppRoutes.home);
-
-        } else {
-          statusRequest = StatusRequest.failed;
-        }
-      }
-      update();
+    } else {
+      // If the request was not successful
+      statusRequest = StatusRequest.failed;
     }
+
+    // Update the UI to reflect the current state
+    update();
   }
+}
+
 
   @override
   void onInit() {

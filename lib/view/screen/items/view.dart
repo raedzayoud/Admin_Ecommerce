@@ -1,4 +1,5 @@
 import 'package:admin_ecommerce/controller/categories/view_controller.dart';
+import 'package:admin_ecommerce/controller/items/view_controller.dart';
 import 'package:admin_ecommerce/core/class/handlingdataview.dart';
 import 'package:admin_ecommerce/core/constant/color.dart';
 import 'package:admin_ecommerce/core/constant/routes.dart';
@@ -6,25 +7,24 @@ import 'package:admin_ecommerce/linkapi.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-
-class CategoriesView extends StatelessWidget {
-  const CategoriesView({super.key});
+class ItemsView extends StatelessWidget {
+  const ItemsView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    Get.put(CategoriesViewController());
+    Get.put(ItemsViewController());
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Categories"),
+        title: const Text("Items"),
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: AppColor.white,
         onPressed: () {
-          Get.toNamed(AppRoutes.categorieadd);
+          Get.toNamed(AppRoutes.itemsadd);
         },
         child: Icon(Icons.add),
       ),
-      body: GetBuilder<CategoriesViewController>(
+      body: GetBuilder<ItemsViewController>(
         builder: (controller) => HandlingdataRequest(
           statusRequest: controller.statusRequest,
           widget: WillPopScope(
@@ -33,7 +33,7 @@ class CategoriesView extends StatelessWidget {
             },
             child: Container(
               child: ListView.builder(
-                itemCount: controller.datacat.length,
+                itemCount: controller.dataitems.length,
                 itemBuilder: (context, index) {
                   return Card(
                     color: AppColor.white,
@@ -44,12 +44,12 @@ class CategoriesView extends StatelessWidget {
                           children: [
                             CachedNetworkImage(
                               imageUrl:
-                                  "${AppLinkApi.imagesCategories}/${controller.datacat[index].categoriesImage}",
+                                  "${AppLinkApi.imagesItems}/${controller.dataitems[index].itemsImage}",
                               fit: BoxFit.cover,
-                              height: 120,
-                            ), // Adjust image to fit within the container
+                              height: 150,
+                            ), 
                             Text(
-                              "${controller.datacat[index].categoriesName}",
+                              "${controller.dataitems[index].itemsName}",
                               style: TextStyle(
                                 fontSize: 17,
                                 fontWeight: FontWeight.w500,
@@ -78,23 +78,23 @@ class CategoriesView extends StatelessWidget {
                                         onConfirm: () async {
                                           await controller.deleteCategories(
                                               controller
-                                                  .datacat[index].categoriesId
+                                                  .dataitems[index].itemsId
                                                   .toString(),
-                                              controller.datacat[index]
-                                                  .categoriesImage
+                                              controller.dataitems[index]
+                                                  .itemsImage
                                                   .toString());
                                           Get.back();
-                                          controller.getDataCategories();
+                                          controller.getDataItems();
                                         });
                                   },
                                 ),
                                 IconButton(
                                   icon: Icon(Icons.edit),
                                   onPressed: () {
-                                    Get.toNamed(AppRoutes.categorieedit,
+                                    Get.toNamed(AppRoutes.itemsedit,
                                         arguments: {
-                                          "categoriesModel":
-                                              controller.datacat[index]
+                                          "itemsModel":
+                                              controller.dataitems[index]
                                         });
                                   },
                                 ),

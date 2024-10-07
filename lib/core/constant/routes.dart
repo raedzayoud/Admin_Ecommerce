@@ -25,4 +25,11 @@ class AppRoutes{
 
   static const String categorieview ="/categorieview";
   static const String categorieadd ="/categorieadd";
+  static const String categorieedit ="/categorieedit";
+  
+  //items
+  static const String itemsview ="/itemsview";
+  static const String itemsadd ="/itemsadd";
+  static const String itemsedit ="/itemsedit";
+
 }

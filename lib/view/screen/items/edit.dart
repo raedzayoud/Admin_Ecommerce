@@ -1,5 +1,6 @@
 import 'package:admin_ecommerce/controller/categories/add_controller.dart';
 import 'package:admin_ecommerce/controller/categories/edit_controller.dart';
+import 'package:admin_ecommerce/controller/items/edit_controller.dart';
 import 'package:admin_ecommerce/core/constant/color.dart';
 import 'package:admin_ecommerce/core/constant/imageassets.dart';
 import 'package:admin_ecommerce/core/function/uploadfile.dart';
@@ -8,17 +9,17 @@ import 'package:admin_ecommerce/view/widget/auth/curstomtextformauth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class CategoriesEdit extends StatelessWidget {
-  const CategoriesEdit({super.key});
+class ItemsEdit extends StatelessWidget {
+  const ItemsEdit({super.key});
 
   @override
   Widget build(BuildContext context) {
-    CategoriesEditController controller = Get.put(CategoriesEditController());
+    ItemsEditController controller = Get.put(ItemsEditController());
     return Scaffold(
         appBar: AppBar(
-          title: Text("Edit Categories"),
+          title: Text("Edit Items"),
         ),
-        body: GetBuilder<CategoriesEditController>(
+        body: GetBuilder<ItemsEditController>(
           builder: (controller) => Container(
             child: ListView(
               children: [
@@ -32,8 +33,8 @@ class CategoriesEdit extends StatelessWidget {
                 Container(
                   margin: EdgeInsets.symmetric(horizontal: 10),
                   child: Curstomtextformauth(
-                      hintText: "Categories Name",
-                      label: "Categories Name",
+                      hintText: "Items Name",
+                      label: "Items Name",
                       iconData: Icons.category,
                       mycontroller: controller.name,
                       validator: (val) {
@@ -70,7 +71,7 @@ class CategoriesEdit extends StatelessWidget {
                   margin: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
                   child: MaterialButton(
                     onPressed: () {
-                      controller.editCategories();
+                      controller.editItems();
 
                       //controller.categoriesModel = null;
                     },

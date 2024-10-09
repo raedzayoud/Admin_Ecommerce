@@ -55,9 +55,7 @@ class CategoriesView extends StatelessWidget {
                                 fontWeight: FontWeight.w500,
                               ),
                             ),
-                            // Text(
-                            //     "${controller.datacat[index].categoriesDatatime}",
-                            //     style: TextStyle(fontSize: 14)),
+                            
                           ],
                         )),
                         Expanded(

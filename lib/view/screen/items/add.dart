@@ -4,7 +4,9 @@ import 'package:admin_ecommerce/core/constant/color.dart';
 import 'package:admin_ecommerce/core/constant/imageassets.dart';
 import 'package:admin_ecommerce/core/function/uploadfile.dart';
 import 'package:admin_ecommerce/core/function/validinput.dart';
+import 'package:admin_ecommerce/core/shared/customdropdownlist.dart';
 import 'package:admin_ecommerce/view/widget/auth/curstomtextformauth.dart';
+import 'package:drop_down_list/model/selected_list_item.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -50,7 +52,7 @@ class ItemsAdd extends StatelessWidget {
                         hintText: "Give desc of the item ",
                         label: "Desc",
                         iconData: Icons.category,
-                        mycontroller: controller.name,
+                        mycontroller: controller.desc,
                         validator: (val) {
                           return validinput(val!, 1, 20, "");
                         }),
@@ -62,7 +64,7 @@ class ItemsAdd extends StatelessWidget {
                         hintText: "Count item",
                         label: "Count",
                         iconData: Icons.category,
-                        mycontroller: controller.name,
+                        mycontroller: controller.count,
                         validator: (val) {
                           return validinput(val!, 1, 20, "");
                         }),
@@ -74,7 +76,7 @@ class ItemsAdd extends StatelessWidget {
                         hintText: "Discount",
                         label: "Discount",
                         iconData: Icons.category,
-                        mycontroller: controller.name,
+                        mycontroller: controller.discount,
                         validator: (val) {
                           return validinput(val!, 1, 20, "");
                         }),
@@ -86,14 +88,23 @@ class ItemsAdd extends StatelessWidget {
                         hintText: "Price",
                         label: "Price",
                         iconData: Icons.category,
-                        mycontroller: controller.name,
+                        mycontroller: controller.price,
                         validator: (val) {
                           return validinput(val!, 1, 20, "");
                         }),
                   ),
 
-                  
-                
+                  Customdropdownlist(
+                    drop_down_list_id: controller.drop_down_list_id,
+                    drop_down_list_name: controller.drop_down_list_name,
+                    list: controller.dataselected,
+                    title: "Choose the categories you want ",
+                  ),
+
+                  SizedBox(
+                    height: 10,
+                  ),
+
                   Container(
                     decoration: BoxDecoration(
                         color: AppColor.red,

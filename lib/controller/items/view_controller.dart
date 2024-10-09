@@ -45,13 +45,15 @@ class ItemsViewController extends GetxController {
     return Future.value(true);
   }
 
-  deleteCategories(String id, String name) async {
-    var response =
-        await categoriesData.deleteItems({"id": id, "name": name});
+  GoToPageEdit(ItemsModel itemsmodel) {
+    Get.toNamed(AppRoutes.itemsedit, arguments: {"itemsModel": itemsmodel});
+  }
+
+  deleteItems(String id, String name) async {
+    var response = await categoriesData.deleteItems({"id": id, "name": name});
 
     dataitems.removeWhere((elmemnt) => elmemnt.itemsId == id);
 
     update();
   }
-
 }

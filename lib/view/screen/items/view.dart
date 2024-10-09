@@ -35,74 +35,84 @@ class ItemsView extends StatelessWidget {
               child: ListView.builder(
                 itemCount: controller.dataitems.length,
                 itemBuilder: (context, index) {
-                  return Card(
-                    color: AppColor.white,
-                    child: Row(
-                      children: [
-                        Expanded(
-                            child: Column(
-                          children: [
-                            CachedNetworkImage(
-                              imageUrl:
-                                  "${AppLinkApi.imagesItems}/${controller.dataitems[index].itemsImage}",
-                              fit: BoxFit.cover,
-                              height: 150,
-                            ), 
-                            Text(
-                              "${controller.dataitems[index].itemsName}",
-                              style: TextStyle(
-                                fontSize: 17,
-                                fontWeight: FontWeight.w500,
+                  return InkWell(
+                    onTap: (){
+                      controller.GoToPageEdit(controller.dataitems[index]); 
+                    },
+                    child: Card(
+                      color: AppColor.white,
+                      child: Row(
+                        children: [
+                          Expanded(
+                              child: Column(
+                            children: [
+                              CachedNetworkImage(
+                                imageUrl:
+                                    "${AppLinkApi.imagesItems}/${controller.dataitems[index].itemsImage}",
+                                fit: BoxFit.fill,
+                                height: 140,
+                                width: 120,
+                              ), 
+                              
+                            ],
+                          )),
+                        
+                         Container(
+                          width: 100,
+                           child: Text(
+                                    "${controller.dataitems[index].itemsName}",
+                                    style: TextStyle(
+                                      fontSize: 17,
+                                      fontWeight: FontWeight.w500,
+                                    ),textAlign: TextAlign.center,
+                                  ),
+                         ),
+                          
+                          Expanded(
+                            child: ListTile(
+                              trailing: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  IconButton(
+                                    icon: Icon(Icons.delete_forever_outlined),
+                                    onPressed: () {
+                                      Get.defaultDialog(
+                                          title: "Warning",
+                                          titleStyle:
+                                              TextStyle(color: AppColor.red),
+                                          content:
+                                              Text("Are you sure to delete it !"),
+                                          onCancel: () {},
+                                          onConfirm: () async {
+                                            await controller.deleteItems(
+                                                controller
+                                                    .dataitems[index].itemsId
+                                                    .toString(),
+                                                controller.dataitems[index]
+                                                    .itemsImage
+                                                    .toString());
+                                           // Get.back();
+                                            controller.getDataItems();
+                                            Get.back();
+                                          });
+                                    },
+                                  ),
+                                  // IconButton(
+                                  //   icon: Icon(Icons.edit),
+                                  //   onPressed: () {
+                                  //     Get.toNamed(AppRoutes.itemsedit,
+                                  //         arguments: {
+                                  //           "itemsModel":
+                                  //               controller.dataitems[index]
+                                  //         });
+                                  //   },
+                                  // ),
+                                ],
                               ),
                             ),
-                            // Text(
-                            //     "${controller.datacat[index].categoriesDatatime}",
-                            //     style: TextStyle(fontSize: 14)),
-                          ],
-                        )),
-                        Expanded(
-                          child: ListTile(
-                            trailing: Row(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                IconButton(
-                                  icon: Icon(Icons.delete_forever_outlined),
-                                  onPressed: () {
-                                    Get.defaultDialog(
-                                        title: "Warning",
-                                        titleStyle:
-                                            TextStyle(color: AppColor.red),
-                                        content:
-                                            Text("Are you sure to delete it !"),
-                                        onCancel: () {},
-                                        onConfirm: () async {
-                                          await controller.deleteCategories(
-                                              controller
-                                                  .dataitems[index].itemsId
-                                                  .toString(),
-                                              controller.dataitems[index]
-                                                  .itemsImage
-                                                  .toString());
-                                          Get.back();
-                                          controller.getDataItems();
-                                        });
-                                  },
-                                ),
-                                IconButton(
-                                  icon: Icon(Icons.edit),
-                                  onPressed: () {
-                                    Get.toNamed(AppRoutes.itemsedit,
-                                        arguments: {
-                                          "itemsModel":
-                                              controller.dataitems[index]
-                                        });
-                                  },
-                                ),
-                              ],
-                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   );
                 },

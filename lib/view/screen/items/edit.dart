@@ -5,6 +5,7 @@ import 'package:admin_ecommerce/core/constant/color.dart';
 import 'package:admin_ecommerce/core/constant/imageassets.dart';
 import 'package:admin_ecommerce/core/function/uploadfile.dart';
 import 'package:admin_ecommerce/core/function/validinput.dart';
+import 'package:admin_ecommerce/core/shared/customdropdownlist.dart';
 import 'package:admin_ecommerce/view/widget/auth/curstomtextformauth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -24,7 +25,7 @@ class ItemsEdit extends StatelessWidget {
             child: ListView(
               children: [
                 Image.asset(
-                  AppImageassets.categorie,
+                  AppImageassets.product,
                   height: 300,
                 ),
                 SizedBox(
@@ -38,9 +39,86 @@ class ItemsEdit extends StatelessWidget {
                       iconData: Icons.category,
                       mycontroller: controller.name,
                       validator: (val) {
+                        return validinput(val!, 1, 50, "");
+                      }),
+                ),
+
+                Container(
+                  margin: EdgeInsets.symmetric(horizontal: 10),
+                  child: Curstomtextformauth(
+                      hintText: "Give desc of the item ",
+                      label: "Desc",
+                      iconData: Icons.category,
+                      mycontroller: controller.desc,
+                      validator: (val) {
+                        return validinput(val!, 1, 200, "");
+                      }),
+                ),
+
+                Container(
+                  margin: EdgeInsets.symmetric(horizontal: 10),
+                  child: Curstomtextformauth(
+                      hintText: "Count item",
+                      label: "Count",
+                      iconData: Icons.category,
+                      mycontroller: controller.count,
+                      validator: (val) {
                         return validinput(val!, 1, 20, "");
                       }),
                 ),
+
+                Container(
+                  margin: EdgeInsets.symmetric(horizontal: 10),
+                  child: Curstomtextformauth(
+                      hintText: "Discount",
+                      label: "Discount",
+                      iconData: Icons.category,
+                      mycontroller: controller.discount,
+                      validator: (val) {
+                        return validinput(val!, 1, 20, "");
+                      }),
+                ),
+
+                Container(
+                  margin: EdgeInsets.symmetric(horizontal: 10),
+                  child: Curstomtextformauth(
+                      hintText: "Price",
+                      label: "Price",
+                      iconData: Icons.category,
+                      mycontroller: controller.price,
+                      validator: (val) {
+                        return validinput(val!, 1, 20, "");
+                      }),
+                ),
+
+                Container(
+                  margin: EdgeInsets.symmetric(horizontal: 10),
+                  child: Curstomtextformauth(
+                      hintText: "${controller.drop_down_list_name.text}",
+                      label: "Categories",
+                      iconData: Icons.category,
+                      mycontroller: controller.drop_down_list_name,
+                      validator: (val) {
+                        return validinput(val!, 1, 20, "");
+                      }),
+                ),
+
+                RadioListTile(
+                    title: Text("Hide"),
+                    value: "0",
+                    groupValue: controller.isActive,
+                    onChanged: (val) {
+                      controller.changeactive(val);
+                    }),
+
+                RadioListTile(
+                    title: Text("Active"),
+                    value: "1",
+                    groupValue: controller.isActive,
+                    onChanged: (val) {
+                      controller.changeactive(val);
+                    }),
+
                 SizedBox(
                   height: 15,
                 ),

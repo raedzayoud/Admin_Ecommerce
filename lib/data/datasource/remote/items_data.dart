@@ -60,7 +60,7 @@ class ItemsData {
   editItems(Map<String, String> data, [File? file]) async {
     var response;
     if (file == null) {
-      response = await crud.postData(AppLinkApi.itemsdelete, data);
+      response = await crud.postData(AppLinkApi.itemsedit, data);
     } else {
       response = await crud.addRequestWithImageOne(
           AppLinkApi.categoriesedit, data, file);

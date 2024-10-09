@@ -23,7 +23,6 @@ class OrderdetailsController extends GetxController{
     getOrdersDetails();
     super.onInit();
   }
-  
 
     getOrdersDetails() async {
     dataorders.clear();

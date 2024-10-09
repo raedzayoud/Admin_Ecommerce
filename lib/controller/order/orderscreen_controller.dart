@@ -1,4 +1,6 @@
 import 'package:admin_ecommerce/core/constant/color.dart';
+import 'package:admin_ecommerce/view/screen/order/accepted.dart';
+import 'package:admin_ecommerce/view/screen/order/archive.dart';
 import 'package:admin_ecommerce/view/screen/order/orders.dart';
 import 'package:admin_ecommerce/view/screen/setting.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -16,11 +18,13 @@ class OrderscreenController extends GetxController {
   Map<String, IconData> mp = {
     "Pending": Icons.pending,
     "Accepted": Icons.shopping_bag_outlined,
+    "Archive": Icons.archive_outlined,
   };
 
   List list = [
     Orders(),
-    Text(""),
+    Accepted(),
+    Archive(),
   ];
 
   changeColor(currentindex, i){

@@ -37,6 +37,8 @@ List<GetPage<dynamic>>? getPages = [
   GetPage(name: AppRoutes.itemsview, page: () => ItemsView()),
   GetPage(name: AppRoutes.itemsedit, page: () => ItemsEdit()),
   GetPage(name: AppRoutes.itemsadd, page: () => ItemsAdd()),
+  //order
+  GetPage(name: AppRoutes.orders, page: () => Orderscreen()),
   
 
 ];

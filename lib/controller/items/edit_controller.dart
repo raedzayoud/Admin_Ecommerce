@@ -49,13 +49,15 @@ class ItemsEditController extends GetxController {
 
     Map<String, String> data = {
       "id": itemsModel!.itemsId!.toString(),
-      "oldimage": itemsModel!.itemsImage.toString(),
-      "items_name": name.text,
+      "name": name.text,
       "items_desc": desc.text,
       "items_count": count.text,
+      "items_active": isActive,
       "items_price": price.text,
       "items_categories": drop_down_list_id.text,
       "items_discount": discount.text,
+      "imageold": itemsModel!.itemsImage!,
+      
     };
     var response = await approveData.editItems(data, file);
     statusRequest = HandleData(response);

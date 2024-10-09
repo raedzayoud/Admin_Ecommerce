@@ -1,0 +1,41 @@
+import 'package:admin_ecommerce/core/class/crud.dart';
+import 'package:admin_ecommerce/linkapi.dart';
+
+class AcceptedData {
+  Crud crud;
+
+  AcceptedData(this.crud);
+
+  getDataAccepted() async {
+    var response = await crud.postData(AppLinkApi.acceptedorders, {});
+
+    // Return the data based on whether the response is a success or failure
+    return response.fold(
+      (left) {
+        // Handle the error (left side)
+        return left; // Return null or some error object if you need to handle it differently
+      },
+      (right) {
+        // Handle the success (right side)
+        return right; // Return the successful response
+      },
+    );
+  }
+
+  getPending() async {
+    var response = await crud.postData(
+        AppLinkApi.orderviewpending, {});
+
+    // Return the data based on whether the response is a success or failure
+    return response.fold(
+      (left) {
+        // Handle the error (left side)
+        return left; // Return null or some error object if you need to handle it differently
+      },
+      (right) {
+        // Handle the success (right side)
+        return right; // Return the successful response
+      },
+    );
+  }
+}

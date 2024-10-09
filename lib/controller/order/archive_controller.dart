@@ -2,8 +2,8 @@ import 'package:admin_ecommerce/core/class/statusrequest.dart';
 import 'package:admin_ecommerce/core/constant/routes.dart';
 import 'package:admin_ecommerce/core/function/handlingdata.dart';
 import 'package:admin_ecommerce/core/services/services.dart';
-import 'package:admin_ecommerce/data/datasource/remote/archive_data.dart';
 import 'package:admin_ecommerce/data/datasource/remote/auth/login_data.dart';
+import 'package:admin_ecommerce/data/datasource/remote/order/archive_data.dart';
 import 'package:admin_ecommerce/data/model/ordermodel.dart';
 import 'package:get/get.dart';
 
@@ -48,7 +48,7 @@ class ArchiveController extends GetxController {
     statusRequest = StatusRequest.loading;
     update();
     var response = await ordersData
-        .getDataArchive(myServices.sharedPreferences.getString("id")!);
+        .getDataArchive();
     if (response == null) {
       statusRequest = StatusRequest.failed;
     }
@@ -73,7 +73,7 @@ class ArchiveController extends GetxController {
 
   @override
   void onInit() {
-    getOrdersArchive();
+   // getOrdersArchive();
     super.onInit();
   }
 }

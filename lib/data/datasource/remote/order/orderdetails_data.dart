@@ -2,14 +2,14 @@
 import 'package:admin_ecommerce/core/class/crud.dart';
 import 'package:admin_ecommerce/linkapi.dart';
 
-class ArchiveData {
+class OrderdetailsData {
   Crud crud;
 
-  ArchiveData(this.crud);
+  OrderdetailsData(this.crud);
 
-  getDataArchive(String deliveryid) async {
-    var response = await crud.postData(AppLinkApi.ordersarchive, {
-      "deliveryid":deliveryid
+  getDataOrdetails(String orderid) async {
+    var response = await crud.postData(AppLinkApi.ordersdetails, {
+      "orderid":orderid
     });
     
     // Return the data based on whether the response is a success or failure

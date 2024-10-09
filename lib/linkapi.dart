@@ -27,12 +27,7 @@ class AppLinkApi {
 
   static String homepage = "$linkServeurName/home.php";
 
-//order
-  static String ordersprepare = "$linkServeurName/admin/order/orderdetails.php";
-  static String ordersarchive = "$linkServeurName/admin/order/prepare.php";
-  // static String acceptedorders = "$linkServeurName/delivery/order/accepted.php";
-  static String approveorder = "$linkServeurName/admin/order/approve.php";
-  static String orderview = "$linkServeurName/delivery/order/view.php";
+
 
   //notifications
   static String notifications = "$linkServeurName/notifications.php";
@@ -49,4 +44,14 @@ class AppLinkApi {
   static String itemsadd = "$linkServeurName/admin/items/add.php";
   static String itemsedit = "$linkServeurName/admin/items/edit.php";
   static String itemsdelete = "$linkServeurName/admin/items/delete.php";
+
+
+
+  //order
+  static String ordersdetails = "$linkServeurName/admin/orders/ordersdetails.php";
+  static String ordersarchive = "$linkServeurName/admin/orders/archive.php";
+   static String acceptedorders = "$linkServeurName/admin/orders/viewaccepted.php";
+  static String approveorder = "$linkServeurName/admin/orders/approve.php";
+  static String orderviewpending = "$linkServeurName/admin/orders/viewpending.php";
+  static String orderprepare = "$linkServeurName/admin/orders/prepare.php";
 }

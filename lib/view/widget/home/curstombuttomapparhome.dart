@@ -1,4 +1,4 @@
-import 'package:admin_ecommerce/controller/orderscreen_controller.dart';
+import 'package:admin_ecommerce/controller/order/orderscreen_controller.dart';
 import 'package:admin_ecommerce/view/widget/home/custombuttomappar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

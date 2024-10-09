@@ -59,7 +59,9 @@ class Home extends StatelessWidget {
                 Cardhome(
                   title: "Orders",
                   url: AppImageassets.order,
-                  onTap: () {},
+                  onTap: () {
+                    Get.toNamed(AppRoutes.orders);
+                  },
                 ),
               ],
             )

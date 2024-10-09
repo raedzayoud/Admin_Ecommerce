@@ -1,16 +1,14 @@
-import 'package:admin_ecommerce/controller/orders_controller.dart';
+import 'package:admin_ecommerce/controller/order/acceptedorder_controller.dart';
 import 'package:admin_ecommerce/core/constant/color.dart';
 import 'package:admin_ecommerce/core/constant/routes.dart';
 import 'package:admin_ecommerce/data/model/ordermodel.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_state_manager/src/simple/get_view.dart';
 import 'package:jiffy/jiffy.dart';
 
-class CardOrder extends GetView<OrdersController> {
+class Cartorderaccepted extends GetView<AcceptedorderController> {
   final orderModel ordermodel;
-  const CardOrder({super.key, required this.ordermodel});
+  const Cartorderaccepted({super.key, required this.ordermodel});
 
   @override
   Widget build(BuildContext context) {
@@ -60,7 +58,7 @@ class CardOrder extends GetView<OrdersController> {
                   "Payement Method : ${controller.getpayementmethod(ordermodel.ordersPaymentmethod.toString())}  ",
                   style: TextStyle(fontSize: 15),
                 )),
-                 Container(
+            Container(
                 margin: EdgeInsets.only(left: 20),
                 child: Text(
                   "Order Status : ${controller.getOrderStatus(ordermodel.ordersStatus.toString())}  ",
@@ -79,17 +77,18 @@ class CardOrder extends GetView<OrdersController> {
                           color: AppColor.primaycolor),
                     )),
                 Spacer(),
-                if (ordermodel.ordersStatus == 0)
+                if (ordermodel.ordersStatus == 1)
                   Container(
                     width: 90,
                     child: MaterialButton(
-                      onPressed: () async {
-                        await controller.getDataApproved(
-                            ordermodel.ordersId.toString(),
-                            ordermodel.ordersUserid.toString());
-                        controller.getOrders();
+                      onPressed: ()async {
+                       await controller.getDone(
+                            "${ordermodel.ordersId}",
+                            "${ordermodel.ordersUserid}",
+                            "${ordermodel.ordersType}");
+                        controller.getDataAccepted();
                       },
-                      child: Text("Approve",
+                      child: Text("Done",
                           style: TextStyle(
                               fontSize: 15,
                               fontWeight: FontWeight.bold,

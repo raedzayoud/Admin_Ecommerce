@@ -22,6 +22,7 @@ class ItemsEdit extends StatelessWidget {
         ),
         body: GetBuilder<ItemsEditController>(
           builder: (controller) => Container(
+            color: AppColor.white,
             child: ListView(
               children: [
                 Image.asset(

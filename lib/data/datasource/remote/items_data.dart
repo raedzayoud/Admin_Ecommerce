@@ -63,7 +63,7 @@ class ItemsData {
       response = await crud.postData(AppLinkApi.itemsedit, data);
     } else {
       response = await crud.addRequestWithImageOne(
-          AppLinkApi.categoriesedit, data, file);
+          AppLinkApi.itemsedit, data, file);
     }
 
     // Return the data based on whether the response is a success or failure

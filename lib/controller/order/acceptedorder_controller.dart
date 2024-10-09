@@ -1,26 +1,21 @@
-import 'package:admin_ecommerce/controller/order/approveorder_controller.dart';
-import 'package:admin_ecommerce/controller/order/approveorder_data.dart';
 import 'package:admin_ecommerce/core/class/statusrequest.dart';
 import 'package:admin_ecommerce/core/constant/routes.dart';
 import 'package:admin_ecommerce/core/function/handlingdata.dart';
 import 'package:admin_ecommerce/core/services/services.dart';
 import 'package:admin_ecommerce/data/datasource/remote/auth/login_data.dart';
 import 'package:admin_ecommerce/data/datasource/remote/order/accepted_data.dart';
-import 'package:admin_ecommerce/data/datasource/remote/order/approve_data.dart';
+import 'package:admin_ecommerce/data/datasource/remote/order/archive_data.dart';
+import 'package:admin_ecommerce/data/datasource/remote/order/prepare_data.dart';
 import 'package:admin_ecommerce/data/model/ordermodel.dart';
-
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 
-class OrdersController extends GetxController {
+class AcceptedorderController extends GetxController {
   StatusRequest statusRequest = StatusRequest.none;
-  ApproveData approveData = ApproveData(Get.find());
-  AcceptedData acceptedData=AcceptedData(Get.find());
+  AcceptedData ordersData = AcceptedData(Get.find());
   MyServices myServices = Get.find();
+  PrepareData prepareData = PrepareData(Get.find());
   List<orderModel> dataorders = [];
-
-
+  List<orderModel> dataaccepted = [];
   getordertype(val) {
     if (val == "0") {
       return "Delivery";
@@ -39,24 +34,23 @@ class OrdersController extends GetxController {
 
   getOrderStatus(val) {
     if (val == "0") {
-      return "Pending Approval";
+      return "Await Approval";
     } else if (val == "1") {
-      return "The Order is being Prepared ";
+      return "The order is being Prepared ";
     } else if (val == "2") {
-      return "Ready To Picked up by Delivery man";
+      return "The order had picked by the delivery man ";
     } else if (val == "3") {
-      return "On The Way";
+      return "On The Way ";
     } else {
       return "Archive";
     }
   }
-  //Pending 
-  getOrders() async {
+
+  getOrdersPending() async {
     dataorders.clear();
     statusRequest = StatusRequest.loading;
     update();
-    var response =
-        await acceptedData.getPending();
+    var response = await ordersData.getPending();
     if (response == null) {
       statusRequest = StatusRequest.failed;
     }
@@ -74,12 +68,33 @@ class OrdersController extends GetxController {
     update();
   }
 
-  getDataApproved(String orderid,String usersid) async {
+  getDataAccepted() async {
+    dataaccepted.clear();
+    statusRequest = StatusRequest.loading;
+    update();
+    var response = await ordersData.getDataAccepted();
+    if (response == null) {
+      statusRequest = StatusRequest.failed;
+    }
+    statusRequest = HandleData(response);
+    if (StatusRequest.success == statusRequest) {
+      if (response['status'] == 'success') {
+        List data = response['data'];
+        dataaccepted.addAll(data.map((e) => orderModel.fromJson(e)));
+      } else {
+        // Get.defaultDialog(
+        //   title: "Warning", middleText: "Email or Phone aleardy exists");
+        statusRequest = StatusRequest.failed;
+      }
+    }
+    update();
+  }
+
+  getDone(String orderid, String usersid, String typeorder) async {
     dataorders.clear();
     statusRequest = StatusRequest.loading;
     update();
-    var response = await approveData
-        .getDataApproved(orderid,usersid);
+    var response = await prepareData.prepare(orderid, usersid, typeorder);
     if (response == null) {
       statusRequest = StatusRequest.failed;
     }
@@ -99,9 +114,8 @@ class OrdersController extends GetxController {
 
   @override
   void onInit() {
-    //getOrders();
-    // TODO: implement onInit
+    //getOrdersPending();
+   // getDataAccepted();
     super.onInit();
   }
-
 }

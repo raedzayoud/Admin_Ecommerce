@@ -33,17 +33,9 @@ fileUploadGallery([issvg = false]) async {
     // Check MIME type to confirm it's a valid JPG image
     final mimeType = lookupMimeType(file.path);
     print("==================${mimeType}");
-    if (mimeType == "image/jpeg") {
+    
       return file;
-    } else {
-      Get.defaultDialog(
-        titleStyle: TextStyle(
-            color: AppColor.red, fontWeight: FontWeight.bold),
-        title: "Warning",
-        content: Text(
-            'The selected file is not a valid JPG image. Please choose another one!'));
-      return null; // or you can handle this case differently
-    }
+    
   } else {
     return null; // User canceled the picker
   }

@@ -5,6 +5,7 @@ import 'package:admin_ecommerce/view/widget/home/cardhome.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 
 class Home extends StatelessWidget {
   const Home({super.key});
@@ -24,7 +25,12 @@ class Home extends StatelessWidget {
             ),
             GridView(
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 3, mainAxisExtent: 140),
+                  crossAxisCount: getValueForScreenType<int>(
+                context: context,
+                mobile: 3,
+                tablet: 4,
+                desktop: 4,
+              ), mainAxisExtent: 140),
               shrinkWrap: true,
               children: [
                 Cardhome(

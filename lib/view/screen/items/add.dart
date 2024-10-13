@@ -42,7 +42,7 @@ class ItemsAdd extends StatelessWidget {
                         iconData: Icons.category,
                         mycontroller: controller.name,
                         validator: (val) {
-                          return validinput(val!, 1, 20, "");
+                          return validinput(val!, 1, 50, "");
                         }),
                   ),
 
@@ -54,7 +54,7 @@ class ItemsAdd extends StatelessWidget {
                         iconData: Icons.category,
                         mycontroller: controller.desc,
                         validator: (val) {
-                          return validinput(val!, 1, 20, "");
+                          return validinput(val!, 1, 2000, "");
                         }),
                   ),
 

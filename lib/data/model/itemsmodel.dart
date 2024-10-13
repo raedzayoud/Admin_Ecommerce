@@ -50,7 +50,8 @@ class ItemsModel {
     categoriesImage = json['categories_image'];
     categoriesDatatime = json['categories_datatime'];
     favourite = json['favourite'];
-    itemsdiscount = json['itemsdiscount1'];
+    itemsdiscount = (json['itemsdiscount1'] as num?)?.toInt();
+
   }
 
   Map<String, dynamic> toJson() {

@@ -22,6 +22,6 @@ class MyApp extends StatelessWidget {
       initialBinding: MyBinding(),
       getPages: getPages, // Ensure routes are correctly imported
       theme: themeData,
-    );
+    );  
   }
 }

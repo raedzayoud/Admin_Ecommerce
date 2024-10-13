@@ -51,9 +51,7 @@ class LoginControlllerImp extends LoginControlller {
             services.sharedPreferences
                 .setString("age", response['data']['admin_age'].toString());
             services.sharedPreferences.setString("step", "2");
-            // FirebaseMessaging.instance.subscribeToTopic("users");
-            // FirebaseMessaging.instance.subscribeToTopic(
-            //     "users${services.sharedPreferences.getString("id")}");
+            FirebaseMessaging.instance.subscribeToTopic("services");
              Get.offNamed(AppRoutes.home);
            // print("users${services.sharedPreferences.getString("id")}");
           } else {

@@ -1,4 +1,3 @@
-
 import 'package:admin_ecommerce/controller/orderdetails_controller.dart';
 import 'package:admin_ecommerce/core/class/handlingdataview.dart';
 import 'package:admin_ecommerce/core/constant/color.dart';
@@ -27,7 +26,7 @@ class Orderdetails extends StatelessWidget {
                         Lottie.asset(AppImageassets.information,
                             width: 300, height: 200),
                         Container(
-                          height: 150,
+                          //height: 150,
                           child: Card(
                             color: AppColor.white,
                             margin: EdgeInsets.symmetric(horizontal: 10),
@@ -75,7 +74,7 @@ class Orderdetails extends StatelessWidget {
                                         controller.dataorders.length, (index) {
                                       int price = controller
                                           .dataorders[index].itemsPrice!;
-                                      int discount=controller
+                                      int discount = controller
                                           .dataorders[index].itemsDiscount!;
                                       return TableRow(children: [
                                         Text(
@@ -86,8 +85,12 @@ class Orderdetails extends StatelessWidget {
                                           "${controller.dataorders[index].nbreoccurence}",
                                           textAlign: TextAlign.center,
                                         ),
+                                        // Text(
+                                        //   "${discount==0?price:price-(price*discount)/100}",
+                                        //   textAlign: TextAlign.center,
+                                        // ),
                                         Text(
-                                          "${discount==0?price:price-(price*discount)/100}",
+                                          "${controller.dataorders[index].cartPrice}",
                                           textAlign: TextAlign.center,
                                         ),
                                       ]);

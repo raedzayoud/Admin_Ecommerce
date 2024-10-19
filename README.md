@@ -1,6 +1,6 @@
 # AdminEcommerce_App
 
-This section of the eCommerce platform allows the admin to efficiently manage orders, products, and categories. The admin has full control over product management and order processing
+This section of the ecommerce platform allows the admin to efficiently manage orders, products, and categories. The admin has full control over product management and order processing
 
 ## Admin Key Features
 

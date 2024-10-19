@@ -1,16 +1,25 @@
-# admin_ecommerce
+# AdminEcommerce_App
 
-A new Flutter project.
+This section of the eCommerce platform allows the admin to efficiently manage orders, products, and categories. The admin has full control over product management and order processing
 
-## Getting Started
+## Admin Key Features
 
-This project is a starting point for a Flutter application.
+### Order Management
+**Admin** can view all incoming orders, accept them, and mark them as "Done" once the product is prepared for shipment.
 
-A few resources to get you started if this is your first Flutter project:
+### Product Management
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+- **Add New Items**:can easily add new products to the store, including all necessary details such as product name, description, price, and stock quantity.
+- **Edit/Update Items**: can modify existing product details whenever needed, such as changing prices or updating stock.
+- **Remove Items**: can delete products that are no longer available or relevant from the inventory.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### Category Management
+
+- **Add New Categories**: can create new product categories, making it easier for users to browse items.
+- **Edit/Remove Categories**: can update or remove categories based on the store's product offerings.
+
+### Note 
+Link of User Ecommerce: [Ecommerce_User_App](https://github.com/raedzayoud/Ecommece_User_App)  
+Link of Delivery Ecommerce: [Delivery-Applications](https://github.com/raedzayoud/Delivery-Applications)
+
+

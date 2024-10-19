@@ -22,4 +22,8 @@ This section of the eCommerce platform allows the admin to efficiently manage or
 Link of User Ecommerce: [Ecommerce_User_App](https://github.com/raedzayoud/Ecommece_User_App)  
 Link of Delivery Ecommerce: [Delivery-Applications](https://github.com/raedzayoud/Delivery-Applications)
 
+## Contact Information
+
+For inquiries, please contact me at [**raed.zayoud.23@gmail.com**](mailto:raed.zayoud.23@gmail.com).
+
 
